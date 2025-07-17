@@ -12,17 +12,21 @@ A lightweight, interactive Todo application built using plain JavaScript and HTM
 
 ## 📸 Screenshots
 
-1. **App Interface** – A clean interface to manage your tasks.
-2. **Add Task** – Enter a task and press enter to add.
-3. **Complete Task** – Click a task to mark it complete.
-4. **Edit Task** – Double-click a task to edit its content.
-5. **Delete Task** – Right-click a task to delete with confirmation.
+### 1. App Interface
+![App Interface](images/1.png)
 
-> 📷 Add your screenshots in this section using the following format:
-> 
-> ```markdown
-> ![Add Task](images/1.png)
-> ```
+### 2. Add Task
+![Add Task](images/2.png)
+
+### 3. Complete Task
+![Complete Task](images/3.png)
+
+### 4. Edit Task
+![Edit Task](images/4.png)
+
+### 5. Delete Task
+![Delete Task](images/5.png)
+
 
 ## 📂 How to Use
 
