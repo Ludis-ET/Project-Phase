@@ -51,8 +51,8 @@ src/
 Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/react-contact-form.git
-cd react-contact-form
+git clone https://github.com/Ludis-et/Project-Phase.git
+cd 'Task 5'
 ```
 
 Install dependencies:
