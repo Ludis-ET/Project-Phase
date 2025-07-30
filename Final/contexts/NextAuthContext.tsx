@@ -45,7 +45,7 @@ export const NextAuthProvider = ({ children }: NextAuthProviderProps) => {
         password,
         redirect: false,
       });
-
+      console.log("yaaa",result)
       if (result?.error) {
         return { success: false, message: "Invalid credentials" };
       }

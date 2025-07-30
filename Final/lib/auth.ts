@@ -7,27 +7,28 @@ export const authOptions: NextAuthOptions = {
       name: "credentials",
       credentials: {
         email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" }
+        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          return null;
-        }
+        if (!credentials?.email || !credentials?.password) return null;
 
         try {
-          const response = await fetch("https://akil-backend.onrender.com/login", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
+          const response = await fetch(
+            "https://akil-backend.onrender.com/login",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: credentials.email,
+                password: credentials.password,
+              }),
             },
-            body: JSON.stringify({
-              email: credentials.email,
-              password: credentials.password,
-            }),
-          });
+          );
 
           const data = await response.json();
-
+          console.log("data", data)
           if (response.ok && data.data) {
             return {
               id: data.data.id || credentials.email,
@@ -37,37 +38,40 @@ export const authOptions: NextAuthOptions = {
               role: data.data.role || "user",
             };
           }
-          
+
           return null;
         } catch (error) {
-          console.error("Authentication error:", error);
+          console.error("Auth error:", error);
           return null;
         }
-      }
-    })
+      },
+    }),
   ],
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
         token.accessToken = user.accessToken;
         token.role = user.role;
+        token.id = user.id;
       }
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-        session.user.id = token.sub!;
-        session.accessToken = token.accessToken;
-        session.user.role = token.role;
-      }
+      session.user = {
+        id: token.id as string,
+        email: token.email!,
+        name: token.name!,
+        role: token.role,
+      };
+      (session as any).accessToken = token.accessToken;
       return session;
     },
   },
-  pages: {
-    signIn: "/signin",
-  },
   session: {
     strategy: "jwt",
+  },
+  pages: {
+    signIn: "/signin",
   },
   secret: process.env.NEXTAUTH_SECRET,
 };

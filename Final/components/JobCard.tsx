@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { JobPosting } from "@/types/job";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, <CardHeader></CardHeader> } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heart, MapPin, Calendar, Building } from "lucide-react";
 
